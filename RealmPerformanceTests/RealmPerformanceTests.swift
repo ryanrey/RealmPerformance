@@ -13,7 +13,7 @@ class RealmPerformanceTests: XCTestCase {
     let numberWebService = NumberWebService.shared
     
     private enum Constants {
-        static let itemCount = 1000
+        static let itemCount = 5000
     }
     
     override func setUp() {
@@ -33,7 +33,8 @@ class RealmPerformanceTests: XCTestCase {
             for num in 0...Constants.itemCount {
                 let identifier = "\(num)"
                 let number = repository.getNumber(id: identifier)
-                assert(number != nil)
+                
+                XCTAssert(number != nil)
             }
         }
     }
@@ -45,7 +46,8 @@ class RealmPerformanceTests: XCTestCase {
             for num in 0...Constants.itemCount {
                 let identifier = "\(num)"
                 let number = repository.getNumber(id: identifier)
-                assert(number != nil)
+                
+                XCTAssert(number != nil)
             }
         }
     }
@@ -57,7 +59,8 @@ class RealmPerformanceTests: XCTestCase {
             for num in 0...Constants.itemCount {
                 let identifier = "\(num)"
                 let number = repository.getNumber(id: identifier)
-                assert(number != nil)
+                
+                XCTAssert(number != nil)
             }
         }
     }
@@ -69,7 +72,8 @@ class RealmPerformanceTests: XCTestCase {
             for num in 0...Constants.itemCount {
                 let identifier = "\(num)"
                 let number = repository.getNumber(id: identifier)
-                assert(number != nil)
+                
+                XCTAssert(number != nil)
             }
         }
     }
@@ -81,7 +85,8 @@ class RealmPerformanceTests: XCTestCase {
             for num in 0...Constants.itemCount {
                 let identifier = "\(num)"
                 let number = repository.getNumber(id: identifier)
-                assert(number != nil)
+                
+                XCTAssert(number != nil)
             }
         }
     }
