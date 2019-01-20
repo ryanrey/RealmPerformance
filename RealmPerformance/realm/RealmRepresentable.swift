@@ -9,5 +9,5 @@ import RealmSwift
 public protocol RealmRepresentable {
     associatedtype RealmObject: Flyweightable
     
-    func toRealm() -> RealmObject
+    func toRealmObject() -> RealmObject
 }

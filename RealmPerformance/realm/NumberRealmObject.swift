@@ -38,7 +38,7 @@ extension NumberRealmObject: Flyweightable {
 extension NumberFlyweight: RealmRepresentable {
     public typealias RealmObject = NumberRealmObject
     
-    public func toRealm() -> NumberRealmObject {
+    public func toRealmObject() -> NumberRealmObject {
         let realm = try! Realm()
         
         if let numberRealmObject = realm.object(ofType: NumberRealmObject.self, forPrimaryKey: identifier as AnyObject) {

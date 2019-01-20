@@ -8,7 +8,7 @@ import XCTest
 
 class CollectionPerformanceTests: XCTestCase {
     private enum Constants {
-        static let itemCount = 5000
+        static let itemCount = 2500
     }
     
     // MARK: - Performance Tests

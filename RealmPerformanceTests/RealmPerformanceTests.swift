@@ -13,7 +13,7 @@ class RealmPerformanceTests: XCTestCase {
     let numberWebService = NumberWebService.shared
     
     private enum Constants {
-        static let itemCount = 5000
+        static let itemCount = 2500
     }
     
     override func setUp() {

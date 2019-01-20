@@ -10,10 +10,8 @@ extension Realm {
     public func save<T: RealmRepresentable>(item: T, update: Bool = true, completion: ((T.RealmObject?) -> Void)? = nil) where T.RealmObject: Object  {
         do {
             try write {
-                let realmObject: T.RealmObject = item.toRealm()
+                let realmObject: T.RealmObject = item.toRealmObject()
                 add(realmObject, update: update)
-                
-                try commitWrite()
                 
                 completion?(realmObject)
             }
@@ -26,10 +24,8 @@ extension Realm {
         autoreleasepool {
             do {
                 try write {
-                    let realmObjects: [T.RealmObject] = items.compactMap { $0.toRealm() }
+                    let realmObjects: [T.RealmObject] = items.compactMap { $0.toRealmObject() }
                     add(realmObjects, update: update)
-                    
-                    try commitWrite()
                     
                     completion?(realmObjects)
                 }
@@ -43,13 +39,11 @@ extension Realm {
 
 extension Realm {
     public func deleteAllObjects(_ completion: (() -> Void)? = nil) {
-        beginWrite()
-        deleteAll()
-        
         do {
-            try commitWrite()
-            
-            completion?()
+            try write {
+                deleteAll()
+                completion?()
+            }
         } catch {
             completion?()
         }
