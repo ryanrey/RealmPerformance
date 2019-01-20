@@ -12,7 +12,7 @@ public final class NumberWebService {
     
     static let shared = NumberWebService()
     
-    func downloadAndStoreRealmNumbers(amount: Int, completion: Handler? = nil) {
+    func storeRealmNumbers(amount: Int, completion: Handler? = nil) {
         let nums: [Int] = Array(0...amount)
         let realmIdentifiers = nums.compactMap { "\($0)" }
         let flyweights = realmIdentifiers.compactMap { NumberFlyweight(identifier: $0) }

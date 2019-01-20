@@ -184,11 +184,11 @@ extension Observable {
 }
 
 extension Observable {
-    static func create<T>() -> Observable<T> {
+    public static func create<T>() -> Observable<T> {
         return Observable<T>()
     }
     
-    static func create<T>(_ block: @escaping (AnyObserver<T>) -> Void) -> Observable<T> {
+    public static func create<T>(_ block: @escaping (AnyObserver<T>) -> Void) -> Observable<T> {
         return Observable<T>(subscriptionBlock: block)
     }
 }

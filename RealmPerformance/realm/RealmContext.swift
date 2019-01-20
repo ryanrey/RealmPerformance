@@ -1,6 +1,7 @@
 //
 //  RealmContext.swift
 //
+//  Copyright © 2019 Ark. All rights reserved.
 
 import Foundation
 import RealmSwift
@@ -54,8 +55,10 @@ public class RealmContext {
         })
         
         config.deleteRealmIfMigrationNeeded = true
-        let newurl = config.fileURL!.deletingLastPathComponent().appendingPathComponent("com.ark.performanceTests.realm")
-        config.fileURL = newurl
+        
+        let newURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("com.ark.performanceTests.realm")
+        
+        config.fileURL = newURL
         config.schemaVersion = Constant.latestSchemaVersion
         config.migrationBlock = handleRealmMigration
     }

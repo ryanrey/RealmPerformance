@@ -1,10 +1,11 @@
 //
 //  Flyweightable.swift
 //
+//  Copyright © 2019 Ark. All rights reserved.
 
 import Foundation
 
-protocol Flyweightable {
+public protocol Flyweightable {
     associatedtype Flyweight
 
     func toFlyweight() -> Flyweight

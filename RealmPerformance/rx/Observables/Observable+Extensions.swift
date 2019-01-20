@@ -8,7 +8,7 @@ import Foundation
 
 extension Observable {
     @discardableResult
-    func bind<B: Bindable>(to bindable: B) -> Disposable where B.BoundType == T {
+    public func bind<B: Bindable>(to bindable: B) -> Disposable where B.BoundType == T {
         bindable.updateValue(value!)
         
         return subscribeOnNext { value in
@@ -17,7 +17,7 @@ extension Observable {
     }
     
     @discardableResult
-    func bind<B: Bindable>(to bindable: B) -> Disposable where B.BoundType == T? {
+    public func bind<B: Bindable>(to bindable: B) -> Disposable where B.BoundType == T? {
         bindable.updateValue(value)
         
         return subscribeOnNext { value in

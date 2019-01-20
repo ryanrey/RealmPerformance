@@ -1,17 +1,17 @@
 //
 //  NumberRealmObject.swift
 //
+//  Copyright © 2019 Ark. All rights reserved.
 
 import Foundation
 import RealmSwift
-import UIKit
 
 public protocol NumberModel: class {
     var identifier: String? { get set }
 }
 
 extension NumberModel {
-    func update(withNumberModel model: NumberModel) {
+    public func update(withNumberModel model: NumberModel) {
         identifier = model.identifier
     }
 }
@@ -25,7 +25,7 @@ public class NumberFlyweight: NumberModel {
 }
 
 extension NumberRealmObject: Flyweightable {
-    typealias Flyweight = NumberFlyweight
+    public typealias Flyweight = NumberFlyweight
     
     public func toFlyweight() -> NumberFlyweight {
         let flyweight = NumberFlyweight()
@@ -36,7 +36,7 @@ extension NumberRealmObject: Flyweightable {
 }
 
 extension NumberFlyweight: RealmRepresentable {
-    typealias RealmObject = NumberRealmObject
+    public typealias RealmObject = NumberRealmObject
     
     public func toRealm() -> NumberRealmObject {
         let realm = try! Realm()
@@ -52,20 +52,10 @@ extension NumberFlyweight: RealmRepresentable {
     }
 }
 
-extension NumberRealmObject: RealmObject {
-    static func uniqueKey() -> String? {
-        return "identifier"
-    }
-    
-    func uniqueID() -> String? {
-        return "identifier"
-    }
-}
-
 public class NumberRealmObject: Object, NumberModel {
     @objc public dynamic var identifier: String?
     
     @objc open override class func primaryKey() -> String? {
-        return uniqueKey()
+        return "identifier"
     }
 }

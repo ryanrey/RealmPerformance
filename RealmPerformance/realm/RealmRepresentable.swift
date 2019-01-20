@@ -1,11 +1,12 @@
 //
 //  RealmRepresentable.swift
 //
+//  Copyright © 2019 Ark. All rights reserved.
 
 import Foundation
 import RealmSwift
 
-protocol RealmRepresentable {
+public protocol RealmRepresentable {
     associatedtype RealmObject: Flyweightable
     
     func toRealm() -> RealmObject

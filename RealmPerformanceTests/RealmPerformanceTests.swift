@@ -6,34 +6,27 @@
 
 import XCTest
 import RealmSwift
+
 @testable import RealmPerformance
 
 class RealmPerformanceTests: XCTestCase {
     let numberWebService = NumberWebService.shared
     
     private enum Constants {
-        static let itemCount = 10000
+        static let itemCount = 1000
     }
     
     override func setUp() {
-        numberWebService.downloadAndStoreRealmNumbers(amount: Constants.itemCount)
+        numberWebService.storeRealmNumbers(amount: Constants.itemCount)
     }
 
     override func tearDown() {
-         let realm = try! Realm()
-         realm.deleteAllObjects()
-    }
-
-    func testStoreRealmObjects() {
-        let realm = try! Realm()
-        realm.deleteAllObjects()
-        
-        measure {
-            numberWebService.downloadAndStoreRealmNumbers(amount: Constants.itemCount)
-        }
+        deleteRealmObjects()
     }
     
-    func testRepositoryOne() {
+    // MARK: - Performance Tests
+    
+    func testRepositoryOnePerformance() {
         let repository: Repository = RepositoryOne()
         
         measure {
@@ -45,7 +38,7 @@ class RealmPerformanceTests: XCTestCase {
         }
     }
     
-    func testRepositoryTwo() {
+    func testRepositoryTwoPerformance() {
         let repository: Repository = RepositoryTwo()
         
         measure {
@@ -57,7 +50,7 @@ class RealmPerformanceTests: XCTestCase {
         }
     }
     
-    func testRepositoryThree() {
+    func testRepositoryThreePerformance() {
         let repository: Repository = RepositoryThree()
         
         measure {
@@ -69,7 +62,7 @@ class RealmPerformanceTests: XCTestCase {
         }
     }
     
-    func testRepositoryFour() {
+    func testRepositoryFourPerformance() {
         let repository: Repository = RepositoryFour()
         
         measure {
@@ -81,7 +74,7 @@ class RealmPerformanceTests: XCTestCase {
         }
     }
     
-    func testRepositoryFive() {
+    func testRepositoryFivePerformance() {
         let repository: Repository = RepositoryFive()
         
         measure {
@@ -91,5 +84,12 @@ class RealmPerformanceTests: XCTestCase {
                 assert(number != nil)
             }
         }
+    }
+    
+    // MARK: - Private
+    
+    private func deleteRealmObjects() {
+        let realm = try! Realm()
+        realm.deleteAllObjects()
     }
 }

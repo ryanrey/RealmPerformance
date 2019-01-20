@@ -11,7 +11,7 @@ public protocol Repository {
     func getNumber(id: String) -> NumberRealmObject?
 }
 
-// The concrete Repositories listed here are in order from least to most performant
+// The concrete Repository instances listed here are in order from least to most performant
 
 public final class RepositoryOne: Repository {
     private var results: Results<NumberRealmObject> {
@@ -48,6 +48,7 @@ public final class RepositoryThree: Repository {
     
     public func getNumber(id: String) -> NumberRealmObject? {
         let predicate = NSPredicate(format: "identifier = %@", id)
+        
         return results.filter(predicate).first
     }
 }
@@ -59,6 +60,7 @@ public final class RepositoryFour: Repository {
    
     public func getNumber(id: String) -> NumberRealmObject? {
         let predicate = NSPredicate(format: "identifier = %@", id)
+        
         return results.filter(predicate).first
     }
 }
@@ -68,6 +70,7 @@ public final class RepositoryFive: Repository {
     public func getNumber(id: String) -> NumberRealmObject? {
         let realm = try! Realm()
         let realmObject = realm.object(ofType: NumberRealmObject.self, forPrimaryKey: id as AnyObject)
+        
         return realmObject
     }
 }
